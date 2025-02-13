@@ -7,9 +7,9 @@ using namespace std;
 // Check if a number is prime or not. Return 1 if true and 0 if false.
 int test_prime(int x) {
 
-    int factors = 0;
+    int factors{0};
 
-    for(int i=1; i<=x; i++) {
+    for(size_t i{1}; i<=x; i++) {
         if(x%i==0) {
             factors++;
         }
@@ -24,9 +24,9 @@ int test_prime(int x) {
 // Check if a number is perfect or not. Return 1 if true and 0 if false.
 int test_perfect(int x) {
 
-    int k = 0;
+    int k{0};
 
-    for(int i=1; i<x; i++) {
+    for(size_t i{1}; i<x; i++) {
         if(x%i==0) {k+=i;}
         if(i==(x-1) && k==x) {return(1);}
     }
@@ -36,7 +36,7 @@ int test_perfect(int x) {
 // Return no. of digits
 int calc_numberOfDigits(int num) {
 
-    int digits = 0;
+    int digits{0};
 
     do {
         num = num/10;
@@ -48,11 +48,11 @@ int calc_numberOfDigits(int num) {
 
 //Checks if a no. is narcissistic or not. Return 1 if true and 0 if false.
 int test_narcissistic(int x) {
-    int digits = calc_numberOfDigits(x);
-    int sum = 0;
-    int num = x;
+    int digits{calc_numberOfDigits(x)};
+    int sum{0};
+    int num{x};
 
-    for(int i=0; num>0; i++) {
+    for(size_t  i{0}; num>0; i++) {
         sum += pow(num%10, digits);
         num=num/10;
     }
@@ -128,13 +128,13 @@ void display_perfect() {
 
 // Display narcissistic nos (sum of all individual digits raised to the total number of digits is equal to the number)
 void display_narcissistic() {
-    int sum=0;
+    int sum{0};
 
     cout << "The narcissistic nos between 1 - 10k are: ";
-    for(int i=1; i<=10000; i++) {
+    for(size_t i{1}; i<=10000; i++) {
         int num=i;
 
-        for(int j=0; num>0; j++) {
+        for(size_t  j{0}; num>0; j++) {
             sum += pow(num%10, calc_numberOfDigits(i));
             num /= 10;
         }
@@ -146,11 +146,11 @@ void display_narcissistic() {
 
 // Displaying fibonacci sequence
 void display_fibonacci() {
-    int a=1, b=1;
+    int a{1}, b{1};
 
     cout << "Fibonacci Sequence: 1 1 ";
 
-    for(int i=1; i<= 10; i++) {
+    for(size_t i{1}; i<= 10; i++) {
         a += b;
         cout << a << " ";
         b += a;
