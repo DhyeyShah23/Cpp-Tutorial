@@ -161,44 +161,121 @@ void display_fibonacci() {
 
 
 int main() {
-    int a;
-    cout << "Enter a Number: ";
-    cin >> a;
+    int num1, num2;
+    int choice;
+    int colWidth = 5;
+    char wish = 'y';
+   
+    do {
+        cout << endl;
 
-// Test Prime
-    if(test_prime(a)) {cout << "Yes, the number is prime" << endl;}
-    else {cout << "No, the number is not prime" << endl;}
+        cout << left;
+        cout << setw(colWidth) << 1. << "Check if a number is a prime number" << endl;
+        cout << setw(colWidth) << 2. << "Check if a number is perfect number" << endl;
+        cout << setw(colWidth) << 3. << "Calculate the number of digits in a given number" << endl;
+        cout << setw(colWidth) << 4. << "Check if a number is a narscisstic number or not" << endl;
+        cout << setw(colWidth) << 5. << "Find the GCF of 2 numbers" << endl;
+        cout << setw(colWidth) << 6. << "Calculate factorial of a number" << endl;
+        cout << setw(colWidth) << 7. << "Display prime numbers" << endl;
+        cout << setw(colWidth) << 8. << "Display perfect numbers" << endl;
+        cout << setw(colWidth) << 9. << "Display narcissistic numbers" << endl;
+        cout << setw(colWidth) << 10. << "Display the fibonacci sequence" << endl;
+        cout << setw(colWidth) << 11. << "Exit" << endl;
 
-// Test Perfect
-    if(test_perfect(a)) {cout << "Yes, the number is perfect" << endl;}
-    else {cout << "No, the number is not perfect" << endl;}
+        cout << endl;
+        cout << "What do you want to do? ";
+        cin >> choice;
 
-// Test Narcissistic
-    if(test_narcissistic(a)) {cout << "Yes, the number is narcissistic" << endl;}
-    else {cout << "No, the number is not narcissistic" << endl;}
+        switch(choice) {
+            
+            case 1:
+                cout << "Enter the test number: ";
+                cin >> num1;
 
-// Calc No. of digits
-    cout << "No of digits in the given number is " << calc_numberOfDigits(a) << endl;
+                if(test_prime(num1)) {cout << "Yes, the number is prime" << endl;}
+                else {cout << "No, the number is not prime" << endl;}
+            break;
 
-// Calc GCF
-    cout << "The GCF of the no. and 150 is: " << calc_greatestCommonDivisor(a, 150) << endl;
+            case 2:
+                cout << "Enter the test number: ";
+                cin >> num1;
 
-// Calculate factorial
-    cout << "The factorial of the given number is " << calc_factorial(a) << endl;
+                if(test_perfect(num1)) {cout << "Yes, the number is perfect" << endl;}
+                else {cout << "No, the number is not perfect" << endl;}
+            break;
+            
+            case 3:
+                cout << "Enter the number: ";
+                cin >> num1;
 
-// Display Prime
-    display_prime();
+                cout << "No of digits in the given number is " << calc_numberOfDigits(num1) << endl;
+            break;
 
-// Display Perfect
-    display_perfect();
+            case 4:
+                cout << "Enter the number: ";
+                cin >> num1;
 
-// Display Narcissistic
-    display_narcissistic();
+                if(test_narcissistic(num1)) {cout << "Yes, the number is narcissistic" << endl;}
+                else {cout << "No, the number is not narcissistic" << endl;}
+            break;
 
-// Display Fibonacci Sequence
-    display_fibonacci();
+            case 5:
+                cout << "Enter the numbers: ";
+                cin >> num1 >> num2;
 
-    cout << endl;
-    cout << "----------------------------------------------------------------------------------------------------------" << endl;
-    cout << endl;
+                cout << "The GCF of " << num1 << " and " << num2 << " is: " << calc_greatestCommonDivisor(num1, num2) << endl;
+            break;
+            
+            case 6:
+                cout << "Enter the number: ";
+                cin >> num1;
+
+                cout << "The factorial of the given number is " << calc_factorial(num1) << endl;
+            break;
+
+            case 7:
+                display_prime();
+                cout << endl;
+            break;
+            
+            case 8:
+                display_perfect();
+                cout << endl;
+            break;
+
+            case 9:
+                display_narcissistic();
+                cout << endl;
+            break;
+
+            case 10:
+                display_fibonacci();
+                cout << endl;
+            break;
+
+            case 11:
+                wish = 'n';
+                cout << "Exiting..";
+            break;
+
+            default:
+                cout << "Invalid choice. Kindly enter the correct choice." << endl;
+            break;
+        }
+
+        if(wish == 'y') {
+
+            cout << endl;
+            cout << "==================================================================================" << endl;
+            cout << endl;
+            
+            cout << "Would you like to run the program again(y/n): ";
+            cin >> wish;
+
+            cout << endl;
+            cout << "==================================================================================" << endl;
+            cout << endl;
+        }
+
+    } while(wish == 'y');
 }
