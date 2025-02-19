@@ -13,7 +13,7 @@ To run the C++ programs on your local machine:
    ```
 3. Navigate to the folder and compile a program:
    ```sh
-   cd Cpp-Tutorial/Basics
+   cd Cpp-Tutorial/programs
    g++ hello_world.cpp -o hello
    ./hello
    ```
