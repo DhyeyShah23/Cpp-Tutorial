@@ -2,6 +2,8 @@
 
 Welcome to my **C++ Tutorial Repository**! This repository serves as a space for me to showcase some of my basic C++ programs while gaining hands-on experience with version control using Git and GitHub.
 
+I have also add some my notes I made while learning Cpp. Go through them if you feel like it.
+
 It can also be a useful resource for beginners looking for program ideas or seeking to build upon my existing work.
 
 ## 🛠 Setup Instructions
