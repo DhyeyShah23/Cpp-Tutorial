@@ -160,8 +160,7 @@ int main(){
     
     if(!(p_number10 == nullptr)) {          // Only use slave pointers when master pointer is valid
         cout<< "p_number11 - " << p_number11 << " - " << *p_number11 << endl;
-    } 
-    else{std::cerr << "WARNING : Trying to use an invalid pointer" << endl;}     // std::cerr is a standard iostream object that sends error messages to the standard error stream (stderr)
+    } else {std::cerr << "WARNING : Trying to use an invalid pointer" << endl;}     // std::cerr is a standard iostream object that sends error messages to the standard error stream (stderr)
     
     cout << endl;
     cout << "========================================" << endl;
@@ -183,17 +182,23 @@ int main(){
     /* In order to catch the error and make sure that the program ends well, there are 2 methods. */
 
     // Using try and catch block:
+    int* data3;
     try{
-        int* data3 = new int[100000000000000000];
+        data3 = new int[10000000000];
     } catch(std::exception& ex) {
         cout << "Something went wrong: " << ex.what() << std::endl;
     }
+    delete data3;
+    data3 = nullptr;
 
     // Using std::nothrow - this allocates nullptr to the pointer is it's allocation using new fails.
     int* data4 = new(std::nothrow) int[100000000000000000];
 
     if(data4 != nullptr) {cout << "Data allocated" << std::endl;}
     else {cout << "Data allocation failed" << std::endl;}
+
+    delete data4;
+    data4 = nullptr;
 
     cout << endl;
     cout << "========================================" << endl;
@@ -219,5 +224,22 @@ int main(){
 
 // MEMORY LEAKS
     
+    /*
+    Memory leak is when our program loses access to a memory location (in heap) which has some data in it.
+    As a result, it becomes impossible to return the data back to the OS, which might even cause our program to crash if ran for an extended time.
+
+    */    
+
+    // Memory loss due to double allocation
+    int* pointer_1 {new int{67}};        // Points to some address, let's call that address1
+    int number1{55};                     // Stack variable (let's say in address2)
+    pointer_1 = &number; // Now p_number points to address2 , but address1 is still in use by our program. Thus, we have lost access to that memory location i.e., memory is leaked.
+    
+	// Nested scopes with dynamically allocated memory
+	{
+		int* pointer_2 {new int{57}};       // Though the new int is allocated to heap, the pointer variable is, in itself, a local variable. As a result, the pointer variable ceases to exist and thus, memory is leaked.
+	}                                       // Memory with int{57} leaked.
+
+    std::cout << "Program ending well" << std::endl;
     return 0;
 }
