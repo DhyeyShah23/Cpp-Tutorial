@@ -1,5 +1,5 @@
 #include <iostream>
-#include <iomanip> // This is the header file for input/output manipulators. It is used to manipulate (format) the input/output stream.
+#include <iomanip>  // This is the header file for input/output manipulators. It is used to manipulate (format) the input/output stream.
 
 using namespace std;
 

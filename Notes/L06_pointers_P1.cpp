@@ -1,8 +1,15 @@
 #include <iostream>
 using namespace std;
 
+void line(string heading) {
+    cout << endl;
+    cout << "============= " << heading << " =============" << endl;
+    cout << endl;
+}
+
 int main(){
 
+    line("CHARACTER ARRAY");
 // CHARACTER ARRAY
 
     // This string here, "Hello World" is expanded into a constant character array, and the pointer msg points to the first character of that array.
@@ -22,11 +29,9 @@ int main(){
         DEREFRENCING: Dereferencing means accessing the value stored at the memory address a pointer holds, using the dereference operator (*).
     */
 
-    cout << endl;
-    cout << "========================================" << endl;
-    cout << endl;
-    
 
+
+    line("Dynamic Memory Allocation");
 // DYNAMIC MEMORY ALLOCATION - Memory is stored in Heap (instad of stack) at runtime.
     
     /* HEAP vs STACK - Memory allocation
@@ -64,7 +69,7 @@ int main(){
     After this line executes, we will have a valid memory location allocated. 
     */
 							
-	*p_number4 = 77;        // Writting into dynamically allocated memory
+	*p_number4 = 77;            // Writting into dynamically allocated memory
 	cout << endl;
 	cout << "Dynamically allocating memory: " << endl;
 	cout << "*p_number4: " << *p_number4 << endl;
@@ -100,7 +105,7 @@ int main(){
     p_number7 = nullptr;
 
 
-    //Can reuse pointers. Deleting a pointer just returns the memory it occupied in heap back to the OS.
+    // Can reuse pointers. Deleting a pointer just returns the memory it occupied in heap back to the OS.
     p_number5 = new int(81);
     cout << "*p_number : " << *p_number5 << endl;
 
@@ -115,13 +120,10 @@ int main(){
     delete p_number5;
     // delete p_number5;   // Anything can happen and the program may crash.
     p_number5 = nullptr;
-                                                           
-    cout << "Dynamic memory allocation ending well." << endl; 
     
-    cout << endl;
-    cout << "========================================" << endl;
-    cout << endl;
-    
+
+
+    line("DANGLING POINTERS");
 // DANGLING POINTERS: A pointer that does not point to a valid memory address. Trying to derefrence a dangling pointer will result in BAD behaviour.
     /*
     There are 3 types of dangling pointer:-
@@ -141,11 +143,10 @@ int main(){
     delete p_number8;       // The memory of pointer8 (also 9) is now RETURNED BACK TO OS. It's now invalid memory.
     cout<< "p_number9(after deleting p_number8) - " << p_number9 << " - " << *p_number9 << endl;  // This will lead to BAD behaviour.
 
-    /*
-    This problem can be solved by appointing 1 pointer as the master. This pointer will own the memory (responsible for releasing when necessary).
-    Other pointers (slaves) will only be able to derefrence the memory if the master pointer is valid.
-    */
-    int * p_number10 {new int{382}};// Let's say p_number10 is the master pointer
+    /* This problem can be solved by appointing 1 pointer as the master. This pointer will own the memory (responsible for releasing when necessary).
+    Other pointers (slaves) will only be able to derefrence the memory if the master pointer is valid. */
+    
+    int * p_number10 {new int{382}};    // Let's say p_number10 is the master pointer
     int * p_number11 {p_number10};
     
     //Dereference the pointers and use them
@@ -162,11 +163,8 @@ int main(){
         cout<< "p_number11 - " << p_number11 << " - " << *p_number11 << endl;
     } else {std::cerr << "WARNING : Trying to use an invalid pointer" << endl;}     // std::cerr is a standard iostream object that sends error messages to the standard error stream (stderr)
     
-    cout << endl;
-    cout << "========================================" << endl;
-    cout << endl;
-
-
+    
+    line("EXCEPTION HANDELING WHEN NEW FAILS");
 // EXCEPTION HANDELING WHEN NEW FAILS
     
     /* Memory allocation using the new keyword fails when the entire memory of heap is filled out. */
@@ -200,10 +198,9 @@ int main(){
     delete data4;
     data4 = nullptr;
 
-    cout << endl;
-    cout << "========================================" << endl;
-    cout << endl;
 
+
+    line("NULL POINTER SAFETY");
 // NULL POINTER SAFETY - In order to prevent derefrencing a null pointer.
     int *p_number{};
     
@@ -218,17 +215,13 @@ int main(){
     delete p_number;
     p_number = nullptr;
 
-    cout << endl;
-    cout << "========================================" << endl;
-    cout << endl;
 
+
+    line("MEMORY LEAKS");
 // MEMORY LEAKS
-    
-    /*
-    Memory leak is when our program loses access to a memory location (in heap) which has some data in it.
-    As a result, it becomes impossible to return the data back to the OS, which might even cause our program to crash if ran for an extended time.
 
-    */    
+    /* Memory leak is when our program loses access to a memory location (in heap) which has some data in it.
+    As a result, it becomes impossible to return the data back to the OS, which might even cause our program to crash if ran for an extended time. */    
 
     // Memory loss due to double allocation
     int* pointer_1 {new int{67}};        // Points to some address, let's call that address1
@@ -240,6 +233,60 @@ int main(){
 		int* pointer_2 {new int{57}};       // Though the new int is allocated to heap, the pointer variable is, in itself, a local variable. As a result, the pointer variable ceases to exist and thus, memory is leaked.
 	}                                       // Memory with int{57} leaked.
 
-    std::cout << "Program ending well" << std::endl;
+
+
+    line("DYNAMIC ARRAYS");
+// DYNAMIC ARRAYS: These arrays are allocated on the heap using the new operator.
+    int size{10};
+
+    // Declaring dynamic arrays..
+    double* p_salaries{new double[size]};               // Salaries array will contain garbage  values
+    int* p_students{new(std::nothrow) int[size]{}};     // All values initialized to 0. Using new(nothrow) to avoid exception in the program as it will assign the address of nullptr to the pointer if the array is too large to be stored in the heap.
+    double* p_scores {new(std::nothrow) double[size]{1, 2, 3, 4, 5}};   // Allocating memory space for an array of size double vars. Other non-initialized valuse will be initialized to 0's.
+
+
+    // nullptr check and use the allocated array
+    if(p_scores) {
+        cout << "size of scores (it's a regular pointer): " << sizeof(p_scores) << endl;
+        cout << "Successfully allocated memory for scores."<< endl;
+        
+        // Print out elements. Can use regular array access notation {i.e., arr[i]}, or pointer arithmetic {i.e., *(arr + i)}. Used pointer aritmetic here.
+        for( size_t i{}; i<size; i++) {
+           cout << "value: " << *(p_scores + i) << endl; 
+        }
+
+    } else {cout << "Unable to allocate memory for scores." << endl;}
+
+    // Deleting data stored in heap
+    delete[] p_salaries;
+    p_salaries = nullptr;
+
+    delete[] p_students;
+    p_students = nullptr;
+
+    delete[] p_scores;
+    p_scores = nullptr;
+ 
+    // Dynamic vs Static arrays
+   
+    // DIFFRENCE 1: For dynamic arrays, the size of the array can also be determined by a variable and need not to be always determined by a const, as in the case of static arrays.
+    int scores[5] {1, 2, 3, 4, 5};      // Lives on the stack and needs a const to specify the array size.
+
+    // DIFFERENCE 2: When using dynamic arrays, the array decays into a raw pointer, and hence, we cannot use utilities like std::size() or range-based "for loop" with these arrays.
+    
+    // Using the std::size operator() on stsic array
+    cout << "Scores size: " << std::size(scores) << endl;
+
+    // Printing static array using a range-based for loop
+    for(auto s : scores) {cout << "value: " << s << endl;}
+
+    int* p_scores1 = new int[5] {1, 2, 3, 4, 5};    // Lives on the heap.
+    
+    // The std::size() and range-based "for loop" don't work on dynamic arrays.
+    /*
+    cout << "p_scores1 size: " << std::size(p_scores) << endl; 
+    for(auto s : p_scores1) {cout << "value: " << s << endl;}
+    */
+
     return 0;
 }

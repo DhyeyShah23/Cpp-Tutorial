@@ -4,37 +4,8 @@ using namespace std;
 int main(){
 
     // Declare an array of integers
-    int myArr[10]; // Junk data
-
-    // Read data
-
-    cout << "myArr[0] : " << myArr[0] << endl;
-    cout << "myArr[1] : " << myArr[1] << endl;
-    cout << endl;
-   
-    // Read with a normal for loop
-    for(size_t i{0}; i<10; ++i) {cout << "myArr[" << i << "] : " << myArr[i] << endl;}
-
-    myArr[0] = 20;
-    myArr[1] = 21;
-    myArr[2] = 22;
-
-    // Print the data out
-    for(size_t i{0}; i<10; ++i) {cout << "myArr [" << i << "] : " << myArr[i] << endl;}
-    cout << endl;
-
-    // Write data in a loop
-    for(size_t i{0}; i<10; ++i) {myArr[i] *= 10;}
-
-    // Print the data out
-    for(size_t i{0}; i<10; ++i) {cout << "myArr[" << i << "] : " << myArr[i] << endl;}
-    cout << endl;
-
-    // Declare and initialize at the same time
-	double salaries[5] {12.7, 7.5, 13.2, 8.1, 9.3};
-	for(size_t i{0}; i < 5; ++i) {cout << "salary[" << i << "] : " << salaries[i] << endl;}
-    cout << endl;
-  
+    int myArr[10]; // Junk 
+    
     // If you don't initialize all the elements, those you leave out are initialized to 0
     int families[5] {12, 7, 5};
 	for(size_t i{0}; i<5; ++i) {cout << "families[" << i << "] : " << families[i] << endl;}
@@ -58,16 +29,14 @@ int main(){
 
     /*
     The print an array whose size is not known:
-    1. using std::size(<array name>): This method returns the number of elements of an array, and hence can be used in a for loop as a condition.
+    1. using std::size(<array name>): This method returns the number of elements of an array, and hence can be used in a for loop as a condition. However, the std::size() operator does NOT work with dynamic arrays.
     2. using the sizeof(<array name) operator: This method returns the actual size of array (in bytes). Divide it by the size of 1 element of an array to obtain the number of elements in an array.
-    3. Use Ranged for loop.
+    3. Use Ranged for loop. Does NOT work for dynamic arrays.
     */
-    
     
    // Read only arrays
    const int birds[] {10,12,15,11,18,17,23,56}; 
    // birds[2] = 8;     // This line will show an error cuz const arrays cannot be modified.
-
 
     // Sum up scores array, store result in sum
     int scores[] {2, 5, 8, 2, 5, 6, 9};
@@ -79,7 +48,7 @@ int main(){
     cout << endl;
   
 
-    // CHARACTER ARRAYS
+// CHARACTER ARRAYS
 
     // If a character array is null terminated, it's called as C-String
     char msg1[] {'H','e','l','l','o','\0'};
