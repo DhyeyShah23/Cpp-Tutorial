@@ -55,11 +55,11 @@ int main(){
 
     /*
     Here, the array size is specified as 6 (instead of 5). This is because of the null terminator.
-    In C and C++, C-style strings are stored as character arrays, but unlike arrays of numbers, there is no built-in way to determine their length.
+    In C and C++, C-style strings (or C-Strings) are stored as character arrays, but unlike arrays of numbers, there is no built-in way to determine their length.
     The null terminator ('\0') marks the end of the string so that functions can stop reading at the correct point.
     */
 
-    cout << "msg1: " << msg1 << endl;     // You can directly print a character array, without using a loop. This is not possible for a character array.
+    cout << "msg1: " << msg1 << endl;     // You can directly print a character array, without using a loop. This is not possible for any other array.
     cout << "sizeof(msg1): " << sizeof(msg1) << endl;
     cout << endl;
   
@@ -68,13 +68,19 @@ int main(){
     cout << endl;
 
     char msg3[] {'H','e','l','l','o'};      // This is not a c string, as there is not null character. Since only 5 chrs are specified, the size of array is taken as 5. Now, no space is remaing for auto-filling the null terminator at the end.
-    cout << "msg3: " << msg3 << endl;     // This will lead to unexpected outcome.
+    cout << "msg3: " << msg3 << endl;       // This will lead to unexpected outcome.
     cout << endl;
     
     // String literal
     char msg4[] {"Hello"};      // This is a string literal, and hence, the null terminator is automatically appended.
     cout << "msg4: " << msg4 << endl;
     cout << endl;
+
+    /* CONCLUSION: 
+    If you are mentioning individual elements of a string, remember to either add the null terminator at the end of string, or specify the array size as 1 greater than the number of individual characters.
+    If using a string literal, no need to specify the array size.
+    */
+
     
     // Can't safely print out arrays other than those of characters
     int numbers[] {1,2,3,4,5};

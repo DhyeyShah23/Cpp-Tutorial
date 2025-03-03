@@ -70,7 +70,7 @@ int main() {
     const int* const ptrToA{&a};
     cout << "ptrToA: " << *ptrToA << endl;
 
-    line("PROGRAM ENDED SUCESSFULLY");
+    line("PROGRAM END");
     return 0;
 }
 

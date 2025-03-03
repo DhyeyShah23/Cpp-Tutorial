@@ -288,5 +288,6 @@ int main(){
     for(auto s : p_scores1) {cout << "value: " << s << endl;}
     */
 
+    line("PROGRAM END");
     return 0;
 }

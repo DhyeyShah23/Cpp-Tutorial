@@ -70,8 +70,8 @@ int main() {
     cout << endl;
 
     // boolalpha is used to print boolean values as true or false, noboolalpha is used to print boolean values as 1 or 0.
-    bool condition {true};
-    bool other_condition {false};
+    bool condition{true};
+    bool other_condition{false};
     
     cout << "condition: " << condition << endl;
     cout << "other_condition: " << other_condition << endl;
