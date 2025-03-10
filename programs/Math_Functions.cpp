@@ -43,6 +43,10 @@ int calc_numberOfDigits(int num) {
         digits++;
     } while(num>0);
 
+    /*
+    // Alternatively, instead of looping, you can use log10() func from cmath library.
+    digits = log10(num) + 1;
+    */
     return(digits);
 }
 

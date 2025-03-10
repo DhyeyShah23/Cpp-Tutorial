@@ -121,6 +121,9 @@ int main(){
     // delete p_number5;   // Anything can happen and the program may crash.
     p_number5 = nullptr;
     
+    // Creating dynamic array in C++
+    int* dynamicArr;
+    dynamicArr = new int[10];
 
 
     line("DANGLING POINTERS");
