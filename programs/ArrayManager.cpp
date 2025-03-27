@@ -1,3 +1,12 @@
+/* INCOMPLETE */
+
+/* 
+Use OOP principles and make a program which can create and manage arrays. Include the following utilities:
+    1. Inserting and deleting an element.
+    2. Searching the array for a particulat element
+    3. Sorting the array
+*/
+
 #include <iostream>
 #include <iomanip>
 
@@ -32,7 +41,7 @@ public:
 
     // Constructor - Initializing array of specific size.
     Array() {
-        Arr = new int[0];
+        Arr = new int[0];       // Arr is a pointer to a set of [0] integers.
         ArrSize = 0;
         CurrentPosn = 0;
     }
